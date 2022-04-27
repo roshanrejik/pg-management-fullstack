@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 const TernantsForm=(props)=>{
-    const {formSubmit}=props
+    const {formSubmit,handleToggle,adhaar:Adhaar,buildingId:BuildingId,email:Email,name:Name,roomId:RoomId,_id:id}=props
     const buildings=useSelector(state=>state.buildings)
     const rooms=useSelector(state=>state.rooms)
-    const [name,setname]=useState('')
-    const [buildingId,setbuildingId]=useState('')
-    const [roomId,setroomId]=useState('')
-    const [adhaar,setadhaar]=useState('')
-    const [email,setEmail]=useState('')
+    const [name,setname]=useState(Name?Name:'')
+    const [buildingId,setbuildingId]=useState(BuildingId?BuildingId:'')
+    const [roomId,setroomId]=useState(RoomId?RoomId:'')
+    const [adhaar,setadhaar]=useState(Adhaar?Adhaar:'')
+    const [email,setEmail]=useState(Email?Email:'')
     const [roomsSorted,setroomsSorted]=useState(rooms)
     const reset=()=>{
         setname('')
@@ -23,7 +23,7 @@ const TernantsForm=(props)=>{
         const formData={
             name,adhaar,email,buildingId,roomId
         }
-        formSubmit(formData,reset)
+        formSubmit(formData,reset,handleToggle,id)
     }
     
     const handleChange=(e)=>{

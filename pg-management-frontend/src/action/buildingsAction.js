@@ -40,3 +40,18 @@ export const startAddBuilding=(formData,reset)=>{
 export const AddBuilding=(building)=>{
     return{type:'ADDBUILDINIG',payload:building}
 }
+export const startEditBuilding=(formData,id,handleToggle)=>{
+    console.log(id);
+    return (dispatch)=>{
+        axios.put(`/buildings/${id}`,formData)
+        .then(res=>{
+            const newbuilding=res.data
+            dispatch(EditBuilding(newbuilding))
+            handleToggle()
+        })
+        .catch(err=>console.log(err))
+    }
+}
+export const EditBuilding=(newbuilding)=>{
+    return{type:'EDITBUILDINIG',payload:newbuilding}
+}

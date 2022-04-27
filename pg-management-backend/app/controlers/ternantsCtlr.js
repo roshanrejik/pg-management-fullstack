@@ -28,7 +28,7 @@ ternantsCtlr.findOne=(req,res)=>{
 ternantsCtlr.update=(req,res)=>{
     const id=req.params.id
     const body=req.body
-    Ternants.findByIdAndUpdate(id,body)
+    Ternants.findByIdAndUpdate(id,body,{new:true,runValidators:true})
     .then(ternant=>res.json(ternant))
     .catch(err=>res.json(err))
 }

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 const BuildingsForm=(props)=>{
-    const {formSubmit}=props
-    const [name,setName]=useState('')
-    const [landmark,setLandMark]=useState('')
-    const [address,setAddress]=useState('')
+    const {formSubmit,_id:id,name:Name,landmark:LandMark,address:Address}=props
+    const [name,setName]=useState(Name?Name:'')
+    const [landmark,setLandMark]=useState(LandMark?LandMark:'')
+    const [address,setAddress]=useState(Address?Address:'')
     const userId=useSelector(state=>state.user._id)
     const handleChange=(e)=>{
         switch(e.target.name){
@@ -27,10 +27,10 @@ const BuildingsForm=(props)=>{
         const formData={
             name,address,landmark,userId
         }
-        formSubmit(formData,reset);
+        formSubmit(formData,id,reset);
     }
     return(
-        <div className="border rounded shadow p-3">
+        <div className="border rounded shadow p-3 ">
             <form className="form-group row" onSubmit={handleSubmit}> 
             <div className="col-sm-3">
             <input type="text" placeholder="Name" className="form-control" name="name" value={name} onChange={handleChange}/>

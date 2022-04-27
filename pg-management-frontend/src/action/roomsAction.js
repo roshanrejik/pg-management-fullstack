@@ -40,3 +40,18 @@ export const startAddRoom=(formData,reset)=>{
 export const AddRoom=(room)=>{
     return{type:'ADDROOM',payload:room}
 }
+export const startEditRoom=(formData,handleToggle,reset,id)=>{
+    return (dispatch)=>{
+        axios.put(`/rooms/${id}`,formData)
+        .then(res=>{
+            const newroom=res.data
+            dispatch(EditRoom(newroom))
+            handleToggle()
+            reset()
+        })
+        .catch(err=>console.log(err))
+    }
+}
+export const EditRoom=(newroom)=>{
+    return{type:'EDITROOM',payload:newroom}
+}

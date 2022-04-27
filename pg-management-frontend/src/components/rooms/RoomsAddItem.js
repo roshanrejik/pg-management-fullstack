@@ -9,7 +9,7 @@ const RoomsAddItem=(props)=>{
     }
     return(
         <div>
-            <h2 className="p-3">Add Building</h2>
+            <h2 className="p-3">Add Room</h2>
             <RoomsForm formSubmit={formSubmit}/>
         </div>
     )

@@ -40,3 +40,19 @@ export const startAddTernant=(formData,reset)=>{
 export const AddTernant=(ternant)=>{
     return{type:'ADDTERNANT',payload:ternant}
 }
+export const startEditTernant=(formData,handleToggle,reset,id)=>{
+    console.log(formData,handleToggle,reset,id);
+    return (dispatch)=>{
+        axios.put(`/ternants/${id}`,formData)
+        .then(res=>{
+            const newternant=res.data
+            dispatch(EditTernant(newternant))
+            //handleToggle()
+            reset()
+        })
+        .catch(err=>console.log(err))
+    }
+}
+export const EditTernant=(newternant)=>{
+    return{type:'EDITTERNANT',payload:newternant}
+}

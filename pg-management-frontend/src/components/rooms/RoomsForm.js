@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 const RoomsForm=(props)=>{
-    const {formSubmit}=props
+    const {formSubmit,_id:id,name:Name,buildingId:BuildingId,handleToggle}=props
     const buildings=useSelector(state=>state.buildings)
-    const [name,setname]=useState('')
-    const [buildingId,setbuildingId]=useState('')
+    const [name,setname]=useState(Name?Name:'')
+    const [buildingId,setbuildingId]=useState(BuildingId?BuildingId:'')
     const reset=()=>{
         setbuildingId('')
         setname('')
@@ -14,7 +14,7 @@ const RoomsForm=(props)=>{
         const formData={
             name,buildingId
         }
-        formSubmit(formData,reset)
+        formSubmit(formData,handleToggle,reset,id)
     }
     const handleChange=(e)=>{
         switch(e.target.name){

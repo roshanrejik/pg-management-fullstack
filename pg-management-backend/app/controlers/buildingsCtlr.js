@@ -15,7 +15,7 @@ buildingsCtlr.create=(req,res)=>{
 buildingsCtlr.update=(req,res)=>{
     const id=req.params.id
     const body=req.body
-    Buildings.findByIdAndUpdate(id,body)
+    Buildings.findByIdAndUpdate(id,body,{new:true,runValidators:true})
     .then(building=>res.json(building))
     .catch(err=>res.json(err))
 }

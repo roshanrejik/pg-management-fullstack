@@ -21,7 +21,7 @@ roomsCtlr.create=(req,res)=>{
 roomsCtlr.update=(req,res)=>{
     const id=req.params.id
     const body=req.body
-    Rooms.findByIdAndUpdate(id,body)
+    Rooms.findByIdAndUpdate(id,body,{new:true,runValidators:true})
     .then(room=>res.json(room))
     .catch(err=>res.json(err))
 }
